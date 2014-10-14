@@ -1,5 +1,5 @@
-// Name: app.js
-// Author: Cerek Hillen
+// Name        : app.js
+// Author      : Cerek Hillen
 // Date Created: 10/14/2014
 // Date Changed: 10/14/2014
 //
