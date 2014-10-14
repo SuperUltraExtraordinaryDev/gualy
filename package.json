@@ -1,0 +1,21 @@
+{
+  "name": "goaly",
+  "version": "0.0.0",
+  "description": "A goal-tracking app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/crockeo/goaly"
+  },
+  "author": "Cerek Hillen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crockeo/goaly/issues"
+  },
+  "dependencies": {
+    "express": "~4.9.7",
+  }
+}
