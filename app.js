@@ -12,9 +12,11 @@
 var express     = require('express'),
 	mongoose    = require('mongoose'),
 	fs          = require('fs'),
-	middlewares = require(__dirname + '/middlewares.js');
-    schema      = require(__dirname + '/schema.js');
-    routes      = require(__dirname + '/routes.js');
+
+	middlewares = require(__dirname + '/middlewares.js'),
+	schema      = require(__dirname + '/schema.js'),
+	routes      = require(__dirname + '/routes.js'),
+	api         = require(__dirname + '/api.js');
 
 //////////
 // Code //
@@ -29,6 +31,9 @@ fs.readFile('connection.txt', 'utf8', function (err, data) {
 
 // Setting up Jade for the rendering engine.
 app.engine('.jade', require('jade').renderFile);
+
+// Using the API app for the API section of the program.
+app.use('/api', api.app);
 
 // Registering the middlewares and routes.
 middlewares.registerAll(app);
