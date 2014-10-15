@@ -1,3 +1,8 @@
+/* html */
+html {
+	overflow-y: scroll;
+}
+
 /* top-bar */
 .top-bar {
 	background: #49b69b;
