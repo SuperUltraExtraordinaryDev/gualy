@@ -1,0 +1,35 @@
+extends ./wrapper.jade
+
+block content
+  .row
+    .col-md-6
+      h1 Login
+      form(action="/api/login/" method="post" role="form")
+        .form-group
+          label(for="loginUsernameInput") Username
+          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username.")
+
+        .form-group
+          label(for="loginPasswordInput") Password
+          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password.")
+
+        .form-group
+          button(class="btn btn-default" type="submit") Login
+
+    .col-md-6
+      h1 Register
+      form(action="/api/login/" method="post" role="form")
+        .form-group
+          label(for="loginUsernameInput") Username
+          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username.")
+
+        .form-group
+          label(for="loginPasswordInput") Password
+          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password.")
+
+        .form-group
+          label(for="loginCPasswordInput") Confirm Password
+          input(id="loginCPasswordInput" class="form-control" type="password" name="cpassword" placeholder="Confirm password.")
+
+        .form-group
+          button(class="btn btn-default" type="submit") Login
