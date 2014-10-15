@@ -20,6 +20,14 @@ var schema = {
 		id      : Number,
 		name    : String,
 		password: String
+	}),
+
+	Goal: mongoose.model('Goal', {
+		userId       : Number,
+		subId        : Number,
+		made         : Date,
+		completed    : Boolean,
+		dateCompleted: Date
 	})
 };
 
