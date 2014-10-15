@@ -14,16 +14,16 @@ function postLogin() {
     };
 
     $.post('/api/login/', inputData, function (data) {
-        console.log(data);
+
     });
 }
 
 // The post to perform on register.
 function postRegister() {
     var inputData = {
-        username : $('registerUsernameInput').val(),
-        password : $('registerPasswordInput').val(),
-        cpassword: $('registerCPasswordInput').val(),
+        username : $('#registerUsernameInput').val(),
+        password : $('#registerPasswordInput').val(),
+        cpassword: $('#registerCPasswordInput').val()
     };
 
     $.post('/api/register/', inputData, function (data) {
@@ -33,6 +33,13 @@ function postRegister() {
 
 // Adding the callbacks onto the buttons.
 $(document).ready(function () {
-    $('#loginButton').click(postLogin);
-    $('#registerButton').click(postRegister);
+    $('#loginForm').submit(function () {
+        postLogin();
+        return false;
+    });
+
+    $('#registerForm').submit(function () {
+        postRegister();
+        return false;
+    });
 });

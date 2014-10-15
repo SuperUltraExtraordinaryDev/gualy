@@ -7,7 +7,7 @@ block content
   .row
     .col-md-6
       h1 Login
-      form(role="form")
+      form#loginForm(role="form")
         .form-group
           label(for="loginUsernameInput") Username
           input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
@@ -17,11 +17,11 @@ block content
           input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password." required)
 
         .form-group
-          button(id="loginButton" class="btn btn-default" type="button") Login
+          button(class="btn btn-default" type="submit") Login
 
     .col-md-6
       h1 Register
-      form(role="form")
+      form#registerForm(role="form")
         .form-group
           label(for="registerUsernameInput") Username
           input(id="registerUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
@@ -35,6 +35,6 @@ block content
           input(id="registerCPasswordInput" class="form-control" type="password" name="cpassword" placeholder="Confirm password." required)
 
         .form-group
-          button(id="registerButton" class="btn btn-default" type="button") Register
+          button(class="btn btn-default" type="submit") Register
       h4
         small (Don't worry, your password is in a 1-way hash.)
