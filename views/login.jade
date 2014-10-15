@@ -1,10 +1,13 @@
 extends ./wrapper.jade
 
+block js-extra
+  script(src="/static/js/login.js")
+
 block content
   .row
     .col-md-6
       h1 Login
-      form(action="/api/login/" method="post" role="form")
+      form(role="form")
         .form-group
           label(for="loginUsernameInput") Username
           input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
@@ -14,24 +17,24 @@ block content
           input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password." required)
 
         .form-group
-          button(class="btn btn-default" type="submit") Login
+          button(id="loginButton" class="btn btn-default" type="button") Login
 
     .col-md-6
       h1 Register
-      form(action="/api/login/" method="post" role="form")
+      form(role="form")
         .form-group
-          label(for="loginUsernameInput") Username
-          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
+          label(for="registerUsernameInput") Username
+          input(id="registerUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
 
         .form-group
-          label(for="loginPasswordInput") Password
-          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password." required)
+          label(for="registerPasswordInput") Password
+          input(id="registerPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password." required)
 
         .form-group
-          label(for="loginCPasswordInput") Confirm Password
-          input(id="loginCPasswordInput" class="form-control" type="password" name="cpassword" placeholder="Confirm password." required)
+          label(for="registerCPasswordInput") Confirm Password
+          input(id="registerCPasswordInput" class="form-control" type="password" name="cpassword" placeholder="Confirm password." required)
 
         .form-group
-          button(class="btn btn-default" type="submit") Register
+          button(id="registerButton" class="btn btn-default" type="button") Register
       h4
         small (Don't worry, your password is in a 1-way hash.)
