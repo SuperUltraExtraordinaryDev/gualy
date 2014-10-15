@@ -9,7 +9,8 @@
 
 /////////////
 // Imports //
-var express = require('express');
+var express = require('express'),
+    routes  = require(__dirname + '/routes.js');
 
 //////////
 // Code //
@@ -21,19 +22,9 @@ app.engine('.jade', require('jade').renderFile);
 // Serving static files.
 app.use('/static/', express.static(__dirname + '/static/'));
 
-// Serving the homepage.
-app.get('/', function (req, res) {
-	res.render('home.jade', function (err, html) {
-		if (err) {
-			console.log(err);
-			res.status(err.status).end();
-		} else {
-			res.status(200);
-			res.type('html');
-			res.send(html);
-		}
-	});
-});
+// Registering all of the apps.
+routes.registerRoutes(app);
 
+// Starting the server.
 app.listen(3000);
 console.log('Started server on 0.0.0.0:3000');
