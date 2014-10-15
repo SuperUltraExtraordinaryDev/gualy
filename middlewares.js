@@ -9,16 +9,18 @@
 
 /////////////
 // Imports //
-var express = require('express'),
-	recovery = require(__dirname + '/middlewares/recovery.js');
+var express  = require('express'),
+	recovery = require(__dirname + '/middlewares/recovery.js'),
+    logger   = require(__dirname + '/middlewares/logger.js');
 
 //////////
 // Code //
 
 // Registering every single middleware.
 function registerAll(app) {
-	app.use('/static/', express.static(__dirname + '/static/'));
 	app.use(recovery.middleware);
+	app.use('/static/', express.static(__dirname + '/static/'));
+	app.use(logger.middleware);
 }
 
 /////////////
