@@ -1,0 +1,23 @@
+/* top-bar */
+.top-bar {
+	background: #49b69b;
+	box-shadow: 0px 5px 0px #0e6e56, 0px 5px 5px #0e6e56;
+}
+
+/* top-bar-text */
+.top-bar-text {
+	font-size: 64px;
+	color: #eee;
+}
+
+.top-bar-text:hover {
+	color: #fff;
+}
+
+.top-bar-text:active {
+	color: #fff;
+}
+
+.top-bar-text:visited {
+	color: #fff;
+}

@@ -5,6 +5,7 @@ html(lang="en")
     block css
       link(rel="stylesheet", href="/static/css/bootstrap.min.css")
       link(rel="stylesheet", href="/static/css/bootstrap-theme.min.css")
+      link(rel="stylesheet", href="/static/css/style.css")
 
     block css-extra
 
@@ -13,7 +14,29 @@ html(lang="en")
       script(src="/static/js/bootstrap.min.js")
 
     block js-extra
-
   body
+    nav(class="navbar navbar-default")
+      .container-fluid
+        .navbard-header
+          button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sub-navbar")
+            span.sr-only Toggle Navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+
+          a.navbar-brand(href="/") Gualy
+
+        div(class="collapse navbar-collapse", id="sub-navbar")
+          ul(class="nav navbar-nav")
+            form(action="/search/" method="GET" class="navbar-form navbar-left" role="search")
+              .form-group
+                input(class="form-control" type="text" name="user" placeholder="Search for users.")
+              .form-group
+                button(class="btn btn-default" type="submit") Submit
+
+          ul(class="nav navbar-nav navbar-right")
+            li
+              a(href="/login") Login / Register
+
     .container
       block content
