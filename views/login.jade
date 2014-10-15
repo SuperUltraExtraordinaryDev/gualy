@@ -7,11 +7,11 @@ block content
       form(action="/api/login/" method="post" role="form")
         .form-group
           label(for="loginUsernameInput") Username
-          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username.")
+          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
 
         .form-group
           label(for="loginPasswordInput") Password
-          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password.")
+          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password." required)
 
         .form-group
           button(class="btn btn-default" type="submit") Login
@@ -21,15 +21,15 @@ block content
       form(action="/api/login/" method="post" role="form")
         .form-group
           label(for="loginUsernameInput") Username
-          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username.")
+          input(id="loginUsernameInput" class="form-control" type="text" name="username" placeholder="Enter username." required)
 
         .form-group
           label(for="loginPasswordInput") Password
-          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password.")
+          input(id="loginPasswordInput" class="form-control" type="password" name="password" placeholder="Enter password." required)
 
         .form-group
           label(for="loginCPasswordInput") Confirm Password
-          input(id="loginCPasswordInput" class="form-control" type="password" name="cpassword" placeholder="Confirm password.")
+          input(id="loginCPasswordInput" class="form-control" type="password" name="cpassword" placeholder="Confirm password." required)
 
         .form-group
           button(class="btn btn-default" type="submit") Register
