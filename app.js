@@ -10,12 +10,22 @@
 /////////////
 // Imports //
 var express     = require('express'),
+	mongoose    = require('mongoose'),
+	fs          = require('fs'),
 	middlewares = require(__dirname + '/middlewares.js');
+    schema      = require(__dirname + '/schema.js');
     routes      = require(__dirname + '/routes.js');
 
 //////////
 // Code //
 var app = express();
+
+// Setting up the Mongoose connection.
+fs.readFile('connection.txt', 'utf8', function (err, data) {
+	if (err)
+		return console.log(err);
+	mongoose.connect(data.trim());
+});
 
 // Setting up Jade for the rendering engine.
 app.engine('.jade', require('jade').renderFile);
