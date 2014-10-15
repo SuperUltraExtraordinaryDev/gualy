@@ -2,9 +2,14 @@ NOT AN OFFICIAL SITEMAP
 JUST A GENERAL IDEA OF WHAT I WANT
 
 * Homepage (introduce the app, pitch it to people - only shown to people who are
-  not yet members.
+  not yet members -- rather no logged in).
 
 * Register / Login page. Look into OAuth2?
 
 * Goal tracking page; main attraction. Make it the home page for people who
   already have accounts?
+
+* Specific user pages. Similar presentation to the home screen, but without the
+  ability to change it in any way (unless it is your own).
+
+* Search page to let people look for your page (if it's public)
