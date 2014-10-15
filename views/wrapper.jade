@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    title Gualy
+    block css
+      link(rel="stylesheet", href="/static/css/bootstrap.min.css")
+      link(rel="stylesheet", href="/static/css/bootstrap-theme.min.css")
+
+    block css-extra
+
+    block js
+      script(src="/static/js/jquery.min.js")
+      script(src="/static/js/bootstrap.min.js")
+
+    block js-extra
+
+  body
+    .container
+      block content
