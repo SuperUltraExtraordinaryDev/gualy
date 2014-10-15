@@ -4,6 +4,45 @@
 	box-shadow: 0px 5px 0px #0e6e56, 0px 5px 5px #0e6e56;
 }
 
+/* big-text */
+.big-text {
+	font-size: 64px;
+}
+
+/* big-text */
+.med-text {
+	font-size: 32px;
+}
+
+/* big-text */
+.sma-text {
+	font-size: 16px;
+}
+
+/* big-text */
+.tin-text {
+	font-size: 8px;
+}
+
+/* li.quote-block */
+li.quote-block {
+	margin-bottom: 4px;
+}
+
+/* quote */
+.quote {
+	font-size: 20px;
+	font-family: times;
+	font-style: italic;
+}
+
+/* quote-author */
+.quote-author {
+	font-size: 20px;
+	font-style: oblique;
+	margin-left: 10px;
+}
+
 /* top-bar-text */
 .top-bar-text {
 	font-size: 64px;
