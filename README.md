@@ -1,1 +1,1 @@
-# goaly (a goal-tracking app)
+# gualy (a goal-tracking app)
