@@ -8,14 +8,16 @@
 
 /////////////
 // Imports //
-var home = require(__dirname + '/routes/home.js');
+var home     = require(__dirname + '/routes/home.js'),
+    notfound = require(__dirname + '/routes/notfound.js');
 
 //////////
 // Code //
 
 // Registering every single route.
 function registerAll(app) {
-	app.get('/', home.get);
+	app.get('/', home.get); // The homepage.
+	app.all('*', notfound.all); // Serving a 404 page.
 }
 
 /////////////
