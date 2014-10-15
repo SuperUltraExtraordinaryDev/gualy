@@ -11,15 +11,15 @@
 
 // Handling a 404 on any given page.
 function all(req, res) {
-	res.render('notfound.jade', function (err, html) {
-		if (err) {
-			console.log(err);
-			res.status(err.status).end();
-		} else {
-			res.status(404);
-			res.send(html);
-		}
-	});
+    res.render('notfound.jade', function (err, html) {
+        if (err) {
+            console.log(err);
+            res.status(err.status).end();
+        } else {
+            res.status(404);
+            res.send(html);
+        }
+    });
 }
 
 /////////////

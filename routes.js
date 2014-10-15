@@ -9,7 +9,7 @@
 /////////////
 // Imports //
 var home     = require(__dirname + '/routes/home.js'),
-	login    = require(__dirname + '/routes/login.js'),
+    login    = require(__dirname + '/routes/login.js'),
     notfound = require(__dirname + '/routes/notfound.js');
 
 //////////
@@ -17,9 +17,9 @@ var home     = require(__dirname + '/routes/home.js'),
 
 // Registering every single route.
 function registerAll(app) {
-	app.get('/', home.get);        // The homepage.
-	app.get('/login/', login.get); // The login page.
-	app.all('*', notfound.all);    // Serving a 404 page.
+    app.get('/', home.get);        // The homepage.
+    app.get('/login/', login.get); // The login page.
+    app.all('*', notfound.all);    // Serving a 404 page.
 }
 
 /////////////

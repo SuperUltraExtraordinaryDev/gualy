@@ -15,9 +15,9 @@
 
 // The middleware itself.
 function middleware(req, res, next) {
-	if (req.url === '/favicon.ico')
-		req.url = '/static/favicon.ico';
-	next();
+    if (req.url === '/favicon.ico')
+        req.url = '/static/favicon.ico';
+    next();
 }
 
 /////////////

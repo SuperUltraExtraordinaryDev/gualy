@@ -16,19 +16,19 @@ var mongoose = require('mongoose');
 
 // The schema to be used with the database.
 var schema = {
-	User: mongoose.model('User', {
-		id      : Number,
-		name    : String,
-		password: String
-	}),
+    User: mongoose.model('User', {
+        id      : Number,
+        name    : String,
+        password: String
+    }),
 
-	Goal: mongoose.model('Goal', {
-		userId       : Number,
-		subId        : Number,
-		made         : Date,
-		completed    : Boolean,
-		dateCompleted: Date
-	})
+    Goal: mongoose.model('Goal', {
+        userId       : Number,
+        subId        : Number,
+        made         : Date,
+        completed    : Boolean,
+        dateCompleted: Date
+    })
 };
 
 /////////////

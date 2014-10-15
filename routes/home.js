@@ -11,16 +11,16 @@
 
 // Getting the homepage.
 function get(req, res) {
-	res.render('home.jade', function (err, html) {
-		if (err) {
-			console.log(err);
-			res.status(err.status).end();
-		} else {
-			res.status(200);
-			res.type('html');
-			res.send(html);
-		}
-	});
+    res.render('home.jade', function (err, html) {
+        if (err) {
+            console.log(err);
+            res.status(err.status).end();
+        } else {
+            res.status(200);
+            res.type('html');
+            res.send(html);
+        }
+    });
 }
 
 /////////////
