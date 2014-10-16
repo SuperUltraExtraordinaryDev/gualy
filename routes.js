@@ -10,6 +10,7 @@
 // Imports //
 var home     = require('./routes/home.js'),
     login    = require('./routes/login.js'),
+    logout   = require('./routes/logout.js'),
     userpage = require('./routes/userpage.js'),
     notfound = require('./routes/notfound.js');
 
@@ -20,6 +21,7 @@ var home     = require('./routes/home.js'),
 function registerAll(app) {
     app.get('/'          , home.get    ); // The homepage.
     app.get('/login/'    , login.get   ); // The login page.
+    app.get('/logout/'   , logout.get  ); // The logout redirect.
     app.get('/user/:name', userpage.get); // A user page.
     app.all('*'          , notfound.all); // Serving a 404 page.
 }
