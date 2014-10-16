@@ -1,4 +1,10 @@
 extends ./wrapper.jade
 
 block content
-  h1.text-center Placeholder goal-management page.
+  if logged
+    if data.goals.length == 0
+      h1.text-center You do not have any goals yet.
+    else
+      h1.text-center TODO: Show goals.
+  else
+    h1.text-center You must log in to manage your goals.
