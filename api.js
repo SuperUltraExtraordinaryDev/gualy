@@ -10,7 +10,7 @@
 // Imports //
 var express      = require('express'),
     bodyParser   = require('body-parser'),
-    schema       = require(__dirname + '/schema.js');
+    schema       = require('./schema.js');
 
 //////////
 // Code //

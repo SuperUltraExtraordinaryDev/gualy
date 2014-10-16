@@ -6,9 +6,6 @@
 // Description:
 //   A route to serve the login page.
 
-/////////////
-// Imports //
-
 //////////
 // Code //
 

@@ -8,10 +8,10 @@
 
 /////////////
 // Imports //
-var home     = require(__dirname + '/routes/home.js'),
-    login    = require(__dirname + '/routes/login.js'),
-    userpage = require(__dirname + '/routes/userpage.js'),
-    notfound = require(__dirname + '/routes/notfound.js');
+var home     = require('./routes/home.js'),
+    login    = require('./routes/login.js'),
+    userpage = require('./routes/userpage.js'),
+    notfound = require('./routes/notfound.js');
 
 //////////
 // Code //

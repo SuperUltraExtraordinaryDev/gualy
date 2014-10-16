@@ -14,9 +14,9 @@ var express      = require('express'),
     cookieParser = require('cookie-parser'),
     fs           = require('fs'),
 
-    middlewares = require(__dirname + '/middlewares.js'),
-    routes      = require(__dirname + '/routes.js'),
-    api         = require(__dirname + '/api.js');
+    middlewares = require('./middlewares.js'),
+    routes      = require('./routes.js'),
+    api         = require('./api.js');
 
 //////////
 // Code //

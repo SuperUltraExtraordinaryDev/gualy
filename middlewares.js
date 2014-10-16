@@ -10,9 +10,9 @@
 /////////////
 // Imports //
 var express  = require('express'),
-    recovery = require(__dirname + '/middlewares/recovery.js'),
-    logger   = require(__dirname + '/middlewares/logger.js')
-    favicon  = require(__dirname + '/middlewares/favicon.js');
+    recovery = require('./middlewares/recovery.js'),
+    logger   = require('./middlewares/logger.js')
+    favicon  = require('./middlewares/favicon.js');
 
 //////////
 // Code //
