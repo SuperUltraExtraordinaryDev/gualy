@@ -6,18 +6,16 @@
 // Description:
 //   A route to serve the login page.
 
+/////////////
+// Imports //
+var renderer = require('../renderer.js');
+
 //////////
 // Code //
 
 // Getting the login page.
 function get(req, res) {
-    res.render('login.jade', function (err, html) {
-        if (err)
-            throw err;
-        res.status(200);
-        res.type('html');
-        res.send(html);
-    });
+    renderer.renderAndSend('login.jade', req, res, {});
 }
 
 /////////////

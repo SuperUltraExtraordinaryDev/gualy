@@ -6,18 +6,16 @@
 // Description:
 //   The route definitions for the homepage.
 
+/////////////
+// Imports //
+var renderer = require('../renderer.js');
+
 //////////
 // Code //
 
 // Getting the homepage.
 function get(req, res) {
-    res.render('home.jade', function (err, html) {
-        if (err)
-            throw err;
-        res.status(200);
-        res.type('html');
-        res.send(html);
-    });
+    renderer.renderAndSend('home.jade', req, res, {});
 }
 
 /////////////

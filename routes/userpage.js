@@ -6,18 +6,16 @@
 // Description:
 //   The route definition for a given person's user page.
 
+/////////////
+// Imports //
+var renderer = require('../renderer.js');
+
 //////////
 // Code //
 
 // Getting the user page.
 function get(req, res) {
-    res.render('userpage.jade', function (err, html) {
-        if (err)
-            throw err;
-        res.status(200);
-        res.type('html');
-        res.send(html);
-    });
+    renderer.renderAndSend('userpage.jade', req, res, {});
 }
 
 /////////////

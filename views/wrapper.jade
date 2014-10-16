@@ -37,8 +37,14 @@ html(lang="en")
                   span(class="glyphicon glyphicon-search")
 
           ul(class="nav navbar-nav navbar-right")
-            li
-              a(href="/login") Login / Register
+            if logged
+              li
+                a(href="/user/" + username) My Profile
+              li
+                a(href="/logout/") Logout
+            else
+              li
+                a(href="/login/") Login / Register
 
     .row
       #messageArea(class="col-md-2 col-md-offset-5 text-center alert" role="alert")

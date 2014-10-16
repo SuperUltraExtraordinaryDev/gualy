@@ -6,20 +6,16 @@
 // Description:
 //   Handling all pages that were requested but were not found.
 
+/////////////
+// Imports //
+var renderer = require('../renderer.js');
+
 //////////
 // Code //
 
 // Handling a 404 on any given page.
 function all(req, res) {
-    res.render('notfound.jade', function (err, html) {
-        if (err) {
-            console.log(err);
-            res.status(err.status).end();
-        } else {
-            res.status(404);
-            res.send(html);
-        }
-    });
+    renderer.renderAndSend('notfound.jade', req, res, {});
 }
 
 /////////////
