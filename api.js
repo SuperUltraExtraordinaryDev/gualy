@@ -156,7 +156,9 @@ app.post('/push/goal/', function (req, res) {
                     }
 
                     new schema.get.Goal({
+                        value        : req.body.goal,
                         userId       : req.body.userId,
+                        isPublic     : true,
                         subId        : id,
                         made         : Date.now(),
                         completed    : false,
