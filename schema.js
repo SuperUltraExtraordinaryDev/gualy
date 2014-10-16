@@ -18,11 +18,12 @@ var mongoose = require('mongoose');
 var schema = {
     User: mongoose.model('User', {
         id      : Number,
-        name    : String,
+        username: String,
         password: String
     }),
 
     Goal: mongoose.model('Goal', {
+        id           : Number,
         userId       : Number,
         subId        : Number,
         made         : Date,
@@ -33,4 +34,4 @@ var schema = {
 
 /////////////
 // Exports //
-module.exports.schema = schema;
+module.exports.get = schema;

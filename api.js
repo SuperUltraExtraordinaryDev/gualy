@@ -9,7 +9,8 @@
 /////////////
 // Imports //
 var express    = require('express'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    schema     = require(__dirname + '/schema.js');
 
 //////////
 // Code //
@@ -45,10 +46,38 @@ app.post('/login/', function (req, res) {
 // Registering the user with the application.
 app.post('/register/', function (req, res) {
     if (hasAll(req.body, ['username', 'password', 'cpassword'])) {
-        res.json({
-            success: false,
-            message: 'Unimplemented.'
-        });
+        if (req.body.password !== req.body.cpassword) {
+            res.json({
+                success: false,
+                message: 'Passwords no not match.'
+            });
+        } else {
+            schema.get.User.findOne({ username: req.body.username }, function (err, user) {
+                if (err) {
+                    new schema.get.User({
+                        username: req.body.username,
+                        password: req.body.password
+                    }).save(function (err) {
+                        if (err) {
+                            res.json({
+                                success: false,
+                                message: 'An unknown error occurred.'
+                            });
+                        } else {
+                            res.json({
+                                success: true,
+                                message: 'Registered!'
+                            });
+                        }
+                    });
+                } else {
+                    res.json({
+                        success: false,
+                        message: 'That name is already taken!'
+                    });
+                }
+            });
+        }
     } else {
         res.json({
             success: false,
