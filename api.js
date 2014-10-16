@@ -10,7 +10,8 @@
 // Imports //
 var express      = require('express'),
     bodyParser   = require('body-parser'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    sha512       = require('crypto-js/sha512'),
     schema       = require('./schema.js');
 
 //////////
@@ -22,6 +23,9 @@ app.use(bodyParser.json());
 
 // Making the API parse cookies.
 app.use(cookieParser());
+
+// Hashing a given string (into a base64 string)
+function hashString(string) { return sha512(string).toString(); }
 
 // Checking that the request has all parameters you want.
 function hasAll(from, names) {
@@ -44,7 +48,7 @@ app.post('/push/login/', function (req, res) {
         if (hasAll(req.body, ['username', 'password'])) {
             schema.get.User.findOne({
                 username: req.body.username,
-                password: req.body.password
+                password: hashString(req.body.password)
             }, function (err, user) {
                 if (user == null) {
                     res.json({
@@ -90,7 +94,7 @@ app.post('/push/register/', function (req, res) {
                     if (user == null) {
                         new schema.get.User({
                             username: req.body.username,
-                            password: req.body.password
+                            password: hashString(req.body.password)
                         }).save(function (err) {
                             if (err) {
                                 res.json({
