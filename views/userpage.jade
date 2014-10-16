@@ -1,4 +1,9 @@
 extends ./wrapper.jade
 
 block content
-  h1.text-center Placeholder user page.
+  if data.success
+    h1.text-center Placeholder user page.
+  else
+    h1.text-center User does not exist.
+    h4.text-center
+      a(href="/") Fly on home.

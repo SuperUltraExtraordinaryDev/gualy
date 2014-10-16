@@ -8,14 +8,26 @@
 
 /////////////
 // Imports //
-var renderer = require('../renderer.js');
+var renderer = require('../renderer.js')
+    schema   = require('../schema.js');
 
 //////////
 // Code //
 
 // Getting the user page.
 function get(req, res) {
-    renderer.renderAndSend('userpage.jade', req, res, {});
+    schema.get.User.findOne({
+        username: req.params.name
+    }, function (err, user) {
+        var externData = {};
+
+        externData.user = user;
+
+        if (err || user == null) externData.success = false;
+        else                     externData.success = true;
+
+        renderer.renderAndSend('userpage.jade', req, res, externData);
+    });
 }
 
 /////////////
