@@ -37,7 +37,7 @@ function postRegister() {
         url: '/api/register/',
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
-        data: JSON.stringify(joinJSON($('#loginForm').serializeArray()))
+        data: JSON.stringify(joinJSON($('#registerForm').serializeArray()))
     }).done(writeMessage);
 }
 
