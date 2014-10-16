@@ -6,6 +6,21 @@
 // Description:
 //   The front-end scripts for the login page.
 
+// Writing a message out to the message area.
+function writeMessage(data) {
+    var area = $('#messageArea');
+
+    if (data.success) {
+        area.removeClass('alert-danger');
+        area.addClass('alert-success');
+    } else {
+        area.removeClass('alert-success');
+        area.addClass('alert-danger');
+    }
+
+    area.html(data.message);
+}
+
 // The post to perform on login.
 function postLogin() {
     $.ajax({
@@ -13,9 +28,7 @@ function postLogin() {
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(joinJSON($('#loginForm').serializeArray()))
-    }).done(function (data) {
-        console.log(data);
-    });
+    }).done(writeMessage);
 }
 
 // The post to perform on register.
@@ -25,9 +38,7 @@ function postRegister() {
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(joinJSON($('#loginForm').serializeArray()))
-    }).done(function (data) {
-        console.log(data);
-    });
+    }).done(writeMessage);
 }
 
 // Adding the callbacks onto the buttons.
