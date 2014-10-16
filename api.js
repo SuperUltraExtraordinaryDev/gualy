@@ -31,9 +31,22 @@ function hasAll(from, names) {
 // Logging the user into the application.
 app.post('/push/login/', function (req, res) {
     if (hasAll(req.body, ['username', 'password'])) {
-        res.json({
-            success: false,
-            message: 'Unimplemented.'
+        schema.get.User.findOne({
+            username: req.body.username,
+            password: req.body.password
+        }, function (err, user) {
+            if (user == null) {
+                res.json({
+                    success: false,
+                    message: 'Invalid username / password combo.'
+                });
+            } else {
+                // TODO: SET THE COOKIE
+                res.json({
+                    success: true,
+                    message: 'Logged in!'
+                });
+            }
         });
     } else {
         res.json({
@@ -52,8 +65,10 @@ app.post('/push/register/', function (req, res) {
                 message: 'Passwords no not match.'
             });
         } else {
-            schema.get.User.findOne({ username: req.body.username }, function (err, user) {
-                if (err) {
+            schema.get.User.findOne({
+                username: req.body.username
+            }, function (err, user) {
+                if (user == null) {
                     new schema.get.User({
                         username: req.body.username,
                         password: req.body.password
