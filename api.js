@@ -15,16 +15,6 @@ var express    = require('express'),
 // Code //
 var app = express();
 
-// Making the API availible for CORS.
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-
-    if (req.method === 'OPTION')
-        res.status(200).end();
-    else
-        next();
-});
-
 // Making the API parse POST requests.
 app.use(bodyParser.json());
 
