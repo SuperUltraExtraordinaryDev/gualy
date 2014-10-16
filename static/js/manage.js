@@ -18,7 +18,7 @@ function pushGoal() {
         url: '/api/push/goal',
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
-        data: json
+        data: JSON.stringify(json)
     }).done(function (data) {
         if (data.success)
             successMessage(data.message);
