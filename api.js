@@ -29,7 +29,7 @@ function hasAll(from, names) {
 }
 
 // Logging the user into the application.
-app.post('/login/', function (req, res) {
+app.post('/push/login/', function (req, res) {
     if (hasAll(req.body, ['username', 'password'])) {
         res.json({
             success: false,
@@ -44,7 +44,7 @@ app.post('/login/', function (req, res) {
 });
 
 // Registering the user with the application.
-app.post('/register/', function (req, res) {
+app.post('/push/register/', function (req, res) {
     if (hasAll(req.body, ['username', 'password', 'cpassword'])) {
         if (req.body.password !== req.body.cpassword) {
             res.json({

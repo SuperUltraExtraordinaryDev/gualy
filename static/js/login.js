@@ -17,7 +17,7 @@ function writeMessage(data) {
 // The post to perform on login.
 function postLogin() {
     $.ajax({
-        url: '/api/login/',
+        url: '/api/push/login/',
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(joinJSON($('#loginForm').serializeArray()))
@@ -27,7 +27,7 @@ function postLogin() {
 // The post to perform on register.
 function postRegister() {
     $.ajax({
-        url: '/api/register/',
+        url: '/api/push/register/',
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(joinJSON($('#registerForm').serializeArray()))
