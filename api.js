@@ -8,9 +8,9 @@
 
 /////////////
 // Imports //
-var express    = require('express'),
-    bodyParser = require('body-parser'),
-    schema     = require(__dirname + '/schema.js');
+var express      = require('express'),
+    bodyParser   = require('body-parser'),
+    schema       = require(__dirname + '/schema.js');
 
 //////////
 // Code //
@@ -41,7 +41,7 @@ app.post('/push/login/', function (req, res) {
                     message: 'Invalid username / password combo.'
                 });
             } else {
-                // TODO: SET THE COOKIE
+                res.cookie('logged', user._id);
                 res.json({
                     success: true,
                     message: 'Logged in!'
