@@ -22,7 +22,9 @@ var schema = {
     }),
 
     Goal: mongoose.model('Goal', {
+        value        : String,
         userId       : String,
+        isPublic     : Boolean,
         subId        : Number,
         made         : Date,
         completed    : Boolean,
