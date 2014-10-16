@@ -15,8 +15,6 @@ function pushGoal() {
     json.userId = $.cookie('logged');
     json.userId = json.userId.slice(3, json.userId.length - 1);
 
-    console.log(JSON.stringify(json));
-
     $.ajax({
         url: '/api/push/goal',
         type: 'POST',
