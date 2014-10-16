@@ -1,10 +1,23 @@
 extends ./wrapper.jade
 
+block js-extra
+  script(src="/static/js/jsonutils.js")
+  script(src="/static/js/manage.js")
+
 block content
-  if logged
-    if data.goals.length == 0
-      h1.text-center You do not have any goals yet.
-    else
-      h1.text-center TODO: Show goals.
-  else
-    h1.text-center You must log in to manage your goals.
+  .row
+    .col-md-3
+      form(id="goalForm" role="form")
+        .form-group
+          label(for="goalTitleInput") Your New Goal:
+          input(id="goalTitleInput" class="form-control" type="text" name="goal" placeholedr="Enter your new goal!" required)
+        .form-group
+          button(class="btn btn-default" type="submit") Submit
+    .col-md-9
+      if logged
+        if data.goals.length == 0
+          h1.text-center You do not have any goals yet.
+        else
+          h1.text-center TODO: Show goals.
+      else
+        h1.text-center You must log in to manage your goals.
