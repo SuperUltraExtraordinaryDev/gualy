@@ -10,6 +10,7 @@
 // Imports //
 var express      = require('express'),
     bodyParser   = require('body-parser'),
+    cookieParser = require('cookie-parser');
     schema       = require('./schema.js');
 
 //////////
@@ -18,6 +19,9 @@ var app = express();
 
 // Making the API parse POST requests.
 app.use(bodyParser.json());
+
+// Making the API parse cookies.
+app.use(cookieParser());
 
 // Checking that the request has all parameters you want.
 function hasAll(from, names) {
@@ -30,74 +34,90 @@ function hasAll(from, names) {
 
 // Logging the user into the application.
 app.post('/push/login/', function (req, res) {
-    if (hasAll(req.body, ['username', 'password'])) {
-        schema.get.User.findOne({
-            username: req.body.username,
-            password: req.body.password
-        }, function (err, user) {
-            if (user == null) {
-                res.json({
-                    success: false,
-                    message: 'Invalid username / password combo.'
-                });
-            } else {
-                res.cookie('logged', user._id);
-                res.json({
-                    success: true,
-                    message: 'Logged in!'
-                });
-            }
-        });
-    } else {
+    if (req.cookies.logged != undefined) {
         res.json({
             success: false,
-            message: 'It looks like you forgot a field!.'
+            message: 'You are already logged in.'
         });
+    }
+    else {
+        if (hasAll(req.body, ['username', 'password'])) {
+            schema.get.User.findOne({
+                username: req.body.username,
+                password: req.body.password
+            }, function (err, user) {
+                if (user == null) {
+                    res.json({
+                        success: false,
+                        message: 'Invalid username / password combo.'
+                    });
+                } else {
+                    res.cookie('logged', user._id);
+                    res.json({
+                        success: true,
+                        message: 'Logged in!'
+                    });
+                }
+            });
+        } else {
+            res.json({
+                success: false,
+                message: 'It looks like you forgot a field!.'
+            });
+        }
     }
 });
 
 // Registering the user with the application.
 app.post('/push/register/', function (req, res) {
-    if (hasAll(req.body, ['username', 'password', 'cpassword'])) {
-        if (req.body.password !== req.body.cpassword) {
-            res.json({
-                success: false,
-                message: 'Passwords no not match.'
-            });
-        } else {
-            schema.get.User.findOne({
-                username: req.body.username
-            }, function (err, user) {
-                if (user == null) {
-                    new schema.get.User({
-                        username: req.body.username,
-                        password: req.body.password
-                    }).save(function (err) {
-                        if (err) {
-                            res.json({
-                                success: false,
-                                message: 'An unknown error occurred.'
-                            });
-                        } else {
-                            res.json({
-                                success: true,
-                                message: 'Registered!'
-                            });
-                        }
-                    });
-                } else {
-                    res.json({
-                        success: false,
-                        message: 'That name is already taken!'
-                    });
-                }
-            });
-        }
-    } else {
+    if (req.cookies.logged != undefined) {
         res.json({
             success: false,
-            message: 'It looks like you forgot a field!.'
+            message: 'You are already logged in.'
         });
+    }
+    else {
+        if (hasAll(req.body, ['username', 'password', 'cpassword'])) {
+            if (req.body.password !== req.body.cpassword) {
+                res.json({
+                    success: false,
+                    message: 'Passwords no not match.'
+                });
+            } else {
+                schema.get.User.findOne({
+                    username: req.body.username
+                }, function (err, user) {
+                    if (user == null) {
+                        new schema.get.User({
+                            username: req.body.username,
+                            password: req.body.password
+                        }).save(function (err) {
+                            if (err) {
+                                res.json({
+                                    success: false,
+                                    message: 'An unknown error occurred.'
+                                });
+                            } else {
+                                res.json({
+                                    success: true,
+                                    message: 'Registered!'
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({
+                            success: false,
+                            message: 'That name is already taken!'
+                        });
+                    }
+                });
+            }
+        } else {
+            res.json({
+                success: false,
+                message: 'It looks like you forgot a field!.'
+            });
+        }
     }
 });
 
