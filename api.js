@@ -129,7 +129,7 @@ app.post('/push/register/', function (req, res) {
 app.post('/push/goal/', function (req, res) {
     if (hasAll(req.body, ['goal', 'userId'])) {
         schema.get.User.findOne({
-            _id: req.body.userid
+            _id: req.body.userId
         }).exec(function (err, user) {
             if (err || user == null) {
                 res.json({
@@ -149,7 +149,7 @@ app.post('/push/goal/', function (req, res) {
                             success: false,
                             message: 'Could not find user goals.'
                         });
-                    } else if (goals == null) {
+                    } else if (goals.length == 0) {
                         id = 0;
                     } else {
                         id = goals[0].subId + 1;
