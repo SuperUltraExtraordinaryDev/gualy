@@ -32,9 +32,13 @@ function render(path, req, res, externData, callback) {
         schema.get.User.findOne({
             _id: req.cookies.logged
         }, function (err, user) {
-            if (err || user == null)
-                throw 'Logged into a user that does not exist! ' + req.cookies.logged;
-            data.username = user.username;
+            if (err || user == null) {
+                data.logged = false;
+                data.name = '';
+                console.log('Tried to log into non-existant user.');
+            } else
+                data.username = user.username;
+
             res.render(path, data, callback);
         });
     } else {
