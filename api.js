@@ -66,7 +66,7 @@ app.post('/push/login/', function (req, res) {
         } else {
             res.json({
                 success: false,
-                message: 'It looks like you forgot a field!.'
+                message: 'It looks like you forgot a field!'
             });
         }
     }
@@ -119,9 +119,69 @@ app.post('/push/register/', function (req, res) {
         } else {
             res.json({
                 success: false,
-                message: 'It looks like you forgot a field!.'
+                message: 'It looks like you forgot a field!'
             });
         }
+    }
+});
+
+// Adding a new goal to a user's list.
+app.post('/push/goal/', function (req, res) {
+    if (hasAll(req.body, ['goal', 'userId'])) {
+        schema.get.User.findOne({
+            _id: req.body.userid
+        }).exec(function (err, user) {
+            if (err || user == null) {
+                res.json({
+                    success: false,
+                    message: 'Could not find user.'
+                });
+            } else {
+                schema.get.Goal.find({
+                    userId: req.body.userId
+                }).sort({
+                    subId: 'descending'
+                }).exec(function (err, goals) {
+                    var id;
+
+                    if (err) {
+                        res.json({
+                            success: false,
+                            message: 'Could not find user goals.'
+                        });
+                    } else if (goals == null) {
+                        id = 0;
+                    } else {
+                        id = goals[0].subId + 1;
+                    }
+
+                    new schema.get.Goal({
+                        userId       : req.body.userId,
+                        subId        : id,
+                        made         : Date.now(),
+                        completed    : false,
+                        dateCompleted: Date.now()
+                    }).save(function (err) {
+                        if (err) {
+                            res.json({
+                                success: false,
+                                message: 'Could not insert goal.'
+                            });
+                        } else {
+                            res.json({
+                                success: true,
+                                message: 'New goal saved!'
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    } else {
+        res.json({
+            success: false,
+            message: 'It looks like you forgot a field!'
+        });
     }
 });
 
