@@ -12,6 +12,7 @@ html(lang="en")
     block js
       script(src="/static/js/jquery.min.js")
       script(src="/static/js/bootstrap.min.js")
+      script(src="/static/js/messagecontrol.js")  
 
     block js-extra
   body
@@ -38,6 +39,9 @@ html(lang="en")
           ul(class="nav navbar-nav navbar-right")
             li
               a(href="/login") Login / Register
+
+    .row
+      #messageArea(class="col-md-2 col-md-offset-5 text-center alert" role="alert")
 
     .container
       block content
