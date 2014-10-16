@@ -21,7 +21,16 @@ function postLogin() {
         type: 'POST',
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(joinJSON($('#loginForm').serializeArray()))
-    }).done(writeMessage);
+    }).done(function (data) {
+        data.message = data.message + ' Redirecting in 3 seconds...';
+        writeMessage(data);
+
+        if (data.success) {
+            setTimeout(function () {
+                window.location.href = '/'
+            }, 3000);
+        }
+    });
 }
 
 // The post to perform on register.
