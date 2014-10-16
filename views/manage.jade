@@ -5,19 +5,22 @@ block js-extra
   script(src="/static/js/manage.js")
 
 block content
-  .row
-    .col-md-3
-      form(id="goalForm" role="form")
-        .form-group
-          label(for="goalTitleInput") Your New Goal:
-          input(id="goalTitleInput" class="form-control" type="text" name="goal" placeholder="Enter your new goal!" required)
-        .form-group
-          button(class="btn btn-default" type="submit") Submit
-    .col-md-9
-      if logged
+  if logged
+    .row
+      .col-md-3
+        form(id="goalForm" role="form")
+          .form-group
+            label(for="goalTitleInput") Your New Goal:
+            input(id="goalTitleInput" class="form-control" type="text" name="goal" placeholder="Enter your new goal!" required)
+          .form-group
+            button(class="btn btn-default" type="submit") Submit
+      .col-md-9
         if data.goals.length == 0
           h1.text-center You do not have any goals yet.
         else
-          h1.text-center TODO: Show goals.
-      else
-        h1.text-center You must log in to manage your goals.
+          ul
+            - for (var i = 0; i < data.goals.length; i++)
+              li
+                h3= data.goals[i].value
+  else
+    h1.text-center You must log in to manage use Gualy.
