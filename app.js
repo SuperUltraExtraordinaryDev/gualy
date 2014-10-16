@@ -9,13 +9,14 @@
 
 /////////////
 // Imports //
-var express     = require('express'),
-	mongoose    = require('mongoose'),
-	fs          = require('fs'),
+var express      = require('express'),
+    mongoose     = require('mongoose'),
+    cookieParser = require('cookie-parser'),
+    fs           = require('fs'),
 
-	middlewares = require(__dirname + '/middlewares.js'),
-	routes      = require(__dirname + '/routes.js'),
-	api         = require(__dirname + '/api.js');
+    middlewares = require(__dirname + '/middlewares.js'),
+    routes      = require(__dirname + '/routes.js'),
+    api         = require(__dirname + '/api.js');
 
 //////////
 // Code //
@@ -23,9 +24,9 @@ var app = express();
 
 // Setting up the Mongoose connection.
 fs.readFile('connection.txt', 'utf8', function (err, data) {
-	if (err)
-		return console.log(err);
-	mongoose.connect(data.trim());
+    if (err)
+        return console.log(err);
+    mongoose.connect(data.trim());
 });
 
 // Setting up Jade for the rendering engine.
@@ -33,6 +34,9 @@ app.engine('.jade', require('jade').renderFile);
 
 // Using the API app for the API section of the program.
 app.use('/api', api.app);
+
+// Making the app use the cookie parser.
+app.use(cookieParser());
 
 // Registering the middlewares and routes.
 middlewares.registerAll(app);
