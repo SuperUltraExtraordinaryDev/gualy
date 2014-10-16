@@ -23,7 +23,6 @@ function get(req, res) {
                        .exec(function (err, goals) {
                            if (err)
                                throw err
-                           console.log(goals);
                            renderer.renderAndSend('manage.jade', req, res, { goals: goals });
                        });
     } else {
