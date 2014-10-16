@@ -20,20 +20,27 @@ var schema = require('./schema.js');
 function render(path, req, res, externData, callback) {
     var data = {};
 
-    // Injecting the 'is logged in' value.
-    data.logged = req.cookies.logged != undefined;
-
-    // Injecting the user's name.
-    if (data.logged) data.username = 'SHOULD BE IMPLEMENTED.'; // TODO: Implement querying for the name.
-    else             data.username = '';
-
     // Injecting the external data.
     data.data = externData;
 
-    // Calling the callback on the render.
-    res.render(path, data, function (err, html) {
-        callback(err, html);
-    });
+    // Injecting the 'is logged in' value.
+    data.logged = req.cookies.logged != undefined;
+
+    // Either injecting the name through DB callback (if the user is logged in)
+    // or avoiding that whole ordeal (when the user isn't logged in).
+    if (data.logged) {
+        schema.get.User.findOne({
+            _id: req.cookies.logged
+        }, function (err, user) {
+            if (err || user == null)
+                throw 'Logged into a user that does not exist! ' + req.cookies.logged;
+            data.username = user.username;
+            res.render(path, data, callback);
+        });
+    } else {
+        data.name = '';
+        res.render(path, data, callback);
+    }
 }
 
 // Rendering and then sending the values.
