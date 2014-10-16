@@ -17,14 +17,12 @@ var mongoose = require('mongoose');
 // The schema to be used with the database.
 var schema = {
     User: mongoose.model('User', {
-        id      : Number,
         username: String,
         password: String
     }),
 
     Goal: mongoose.model('Goal', {
-        id           : Number,
-        userId       : Number,
+        userId       : String,
         subId        : Number,
         made         : Date,
         completed    : Boolean,
