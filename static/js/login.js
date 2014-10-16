@@ -10,6 +10,8 @@
 function writeMessage(data) {
     var area = $('#messageArea');
 
+    area.fadeIn(200);
+
     if (data.success) {
         area.removeClass('alert-danger');
         area.addClass('alert-success');
@@ -43,6 +45,8 @@ function postRegister() {
 
 // Adding the callbacks onto the buttons.
 $(document).ready(function () {
+    $('#messageArea').hide();
+
     $('#loginForm').submit(function () {
         postLogin();
         return false;
