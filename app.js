@@ -1,7 +1,7 @@
 // Name        : app.js
 // Author      : Cerek Hillen
 // Date Created: 10/14/2014
-// Date Changed: 10/15/2014
+// Date Changed: 10/16/2014
 //
 // Description:
 //   The main app file for the project. Sets everything up and starts the
@@ -14,7 +14,6 @@ var express     = require('express'),
 	fs          = require('fs'),
 
 	middlewares = require(__dirname + '/middlewares.js'),
-	schema      = require(__dirname + '/schema.js'),
 	routes      = require(__dirname + '/routes.js'),
 	api         = require(__dirname + '/api.js');
 
