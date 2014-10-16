@@ -1,17 +1,17 @@
-// Name        : home.js
+// Name        : userpage.js
 // Author(s)   : Cerek Hillen
-// Date Created: 10/14/2014
+// Date Created: 10/16/2014
 // Date Changed: 10/16/2014
 //
 // Description:
-//   The route definitions for the homepage.
+//   The route definition for a given person's user page.
 
 //////////
 // Code //
 
-// Getting the homepage.
+// Getting the user page.
 function get(req, res) {
-    res.render('home.jade', function (err, html) {
+    res.render('userpage.jade', function (err, html) {
         if (err)
             throw err;
         res.status(200);
