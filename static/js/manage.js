@@ -38,4 +38,16 @@ $(document).ready(function () {
         pushGoal();
         return false;
     });
+
+    $('.goalDone').click(function () {
+        alert('Goal doned! ' + $(this).closest('li').attr('data-gid'));
+    });
+
+    $('.goalEdit').click(function () {
+        alert('Goal edited! ' + $(this).closest('li').attr('data-gid'));
+    });
+
+    $('.goalRemove').click(function () {
+        alert('Goal removed! ' + $(this).closest('li').attr('data-gid'));
+    });
 });

@@ -28,13 +28,13 @@ block content
                   span= data.goals[i].value
                   
                   span.left-margined
-                    button(class="btn btn-success")
+                    button.goalDone(class="btn btn-success")
                       span(class="glyphicon glyphicon-ok")
 
-                    button(class="btn btn-info")
+                    button.goalEdit(class="btn btn-info")
                       span(class="glyphicon glyphicon-pencil")
 
-                    button(class="btn btn-danger")
+                    button.goalRemove(class="btn btn-danger")
                       span(class="glyphicon glyphicon-remove")
   else
     h1.text-center You must log in to manage use Gualy.
