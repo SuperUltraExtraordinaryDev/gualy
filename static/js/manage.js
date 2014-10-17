@@ -21,8 +21,12 @@ function pushGoal() {
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(json)
     }).done(function (data) {
-        if (data.success)
-            successMessage(data.message);
+        if (data.success)  {
+            successMessage(data.message + ' Refreshing in a sec!');
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        }
         else
             dangerMessage(data.message);
     });
