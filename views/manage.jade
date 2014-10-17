@@ -4,6 +4,9 @@ block js-extra
   script(src="/static/js/jsonutils.js")
   script(src="/static/js/manage.js")
 
+block css-extra
+  link(rel="stylesheet" href="/static/css/manage.css")
+
 block content
   if logged
     .row
@@ -20,7 +23,18 @@ block content
         else
           ul
             - for (var i = 0; i < data.goals.length; i++)
-              li
-                h3= data.goals[i].value
+              li(data-gid="#{data.goals[i]._id}")
+                h3
+                  span= data.goals[i].value
+                  
+                  span.left-margined
+                    button(class="btn btn-success")
+                      span(class="glyphicon glyphicon-ok")
+
+                    button(class="btn btn-info")
+                      span(class="glyphicon glyphicon-pencil")
+
+                    button(class="btn btn-danger")
+                      span(class="glyphicon glyphicon-remove")
   else
     h1.text-center You must log in to manage use Gualy.
