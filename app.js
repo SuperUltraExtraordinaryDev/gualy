@@ -1,7 +1,7 @@
 // Name        : app.js
 // Author      : Cerek Hillen
 // Date Created: 10/14/2014
-// Date Changed: 10/16/2014
+// Date Changed: 10/17/2014
 //
 // Description:
 //   The main app file for the project. Sets everything up and starts the
@@ -32,14 +32,9 @@ fs.readFile('connection.txt', 'utf8', function (err, data) {
 // Setting up Jade for the rendering engine.
 app.engine('.jade', require('jade').renderFile);
 
-// Using the API app for the API section of the program.
-app.use('/api', api.app);
-
-// Making the app use the cookie parser.
-app.use(cookieParser());
-
-// Registering the middlewares and routes.
+// Registering the middlewares, routes, and api.
 app.use(middlewares);
+app.use('/api/', api);
 app.use(routes);
 
 // Starting the server.

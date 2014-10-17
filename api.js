@@ -1,7 +1,7 @@
 // Name        : app.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/15/2014
-// Date Changed: 10/16/2014
+// Date Changed: 10/17/2014
 //
 // Description:
 //   The main application file for the API sub-program.
@@ -16,13 +16,9 @@ var express      = require('express'),
 
 //////////
 // Code //
+
+// Creating the sub-app
 var app = express();
-
-// Making the API parse POST requests.
-app.use(bodyParser.json());
-
-// Making the API parse cookies.
-app.use(cookieParser());
 
 // Hashing a given string (into a base64 string)
 function hashString(string) { return sha512(string).toString(); }
@@ -198,4 +194,4 @@ app.use(function (req, res, next) {
 
 /////////////
 // Exports //
-module.exports.app = app;
+module.exports = app;
