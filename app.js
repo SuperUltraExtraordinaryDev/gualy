@@ -39,8 +39,8 @@ app.use('/api', api.app);
 app.use(cookieParser());
 
 // Registering the middlewares and routes.
-middlewares.registerAll(app);
-routes.registerAll(app);
+app.use(middlewares);
+app.use(routes);
 
 // Starting the server.
 app.listen(3000);

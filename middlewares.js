@@ -17,14 +17,15 @@ var express  = require('express'),
 //////////
 // Code //
 
-// Registering every single middleware.
-function registerAll(app) {
-    app.use(favicon.middleware);
-    app.use(recovery.middleware);
-    app.use('/static/', express.static(__dirname + '/static/'));
-    app.use(logger.middleware);
-}
+// Creating the sub-app.
+var app = express();
+
+// Registering all of the middlewares.
+app.use(favicon.middleware);                                 // Redirecting the favicon to the correct location.
+app.use(recovery.middleware);                                // Recovering from a crash in the app.
+app.use('/static/', express.static(__dirname + '/static/')); // Serving files from the static directory.
+app.use(logger.middleware);                                  // Logging all of the requests.
 
 /////////////
 // Exports //
-module.exports.registerAll = registerAll;
+module.exports = app;
