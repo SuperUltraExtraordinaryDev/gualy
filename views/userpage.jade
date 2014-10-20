@@ -1,9 +1,22 @@
 extends ./wrapper.jade
 
+block css-extra
+  link(rel="stylesheet" href="/static/css/manage.css")
+
 block content
-  if data.success
-    h1.text-center Placeholder user page.
+  if data.userSuccess
+    if data.goalsSuccess
+      h1 #{data.user}'s (Public) Goals
+      ul
+        - for (var i = 0; i < data.goals.length; i++)
+          li
+            if data.goals[i].completed
+              h3.done-goal #{data.goals[i].value}
+              h6.small Done!
+            else
+              h3 #{data.goals[i].value}
+              h6.small Keep on going!
+    else
+      h1.text-center #{data.name} user doesn't have any goals.
   else
-    h1.text-center User does not exist.
-    h4.text-center
-      a(href="/") Fly on home.
+    h1.text-center #{data.name} does not exist.

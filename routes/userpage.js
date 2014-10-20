@@ -16,17 +16,32 @@ var renderer = require('../renderer.js')
 
 // Getting the user page.
 function get(req, res) {
+    var externData = {};
+
+    externData.name = req.params.name;
+
     schema.get.User.findOne({
         username: req.params.name
-    }, function (err, user) {
-        var externData = {};
+    }).exec(function (err, user) {
+        if (err || user === null) {
+            externData.userSuccess = false;
+            renderer.renderAndSend('userpage.jade', req, res, externData);
+        } else {
+            externData.userSuccess = true;
+            schema.get.Goal.find({
+                userId  : user._id,
+                isPublic: true
+            }).exec(function (err, goals) {
+                if (err || goals.length == 0)
+                    externData.goalsSuccess = false;
+                 else {
+                    externData.goalsSuccess = true;
+                    externData.goals = goals;
+                }
 
-        externData.user = user;
-
-        if (err || user == null) externData.success = false;
-        else                     externData.success = true;
-
-        renderer.renderAndSend('userpage.jade', req, res, externData);
+                renderer.renderAndSend('userpage.jade', req, res, externData);
+            });
+        }
     });
 }
 

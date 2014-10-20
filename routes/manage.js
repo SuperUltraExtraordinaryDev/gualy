@@ -17,14 +17,15 @@ var renderer = require('../renderer.js'),
 // Serving the manage page.
 function get(req, res) {
     if (req.cookies.logged != null) {
-        schema.get.Goal.find({})
-                       .where({ userId: req.cookies.logged })
-                       .sort({ subId: 'descending' })
-                       .exec(function (err, goals) {
-                           if (err)
-                               throw err
-                           renderer.renderAndSend('manage.jade', req, res, { goals: goals });
-                       });
+        schema.get.Goal.find({
+            userId: req.cookies.logged
+        }).sort({
+            subId: 'descending'
+        }).exec(function (err, goals) {
+           if (err)
+               throw err
+           renderer.renderAndSend('manage.jade', req, res, { goals: goals });
+        });
     } else {
         renderer.renderAndSend('manage.jade', req, res, {});
     }
