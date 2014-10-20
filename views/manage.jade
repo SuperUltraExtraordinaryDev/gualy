@@ -25,7 +25,11 @@ block content
             - for (var i = 0; i < data.goals.length; i++)
               li(data-gid="#{data.goals[i]._id}")
                 if data.goals[i].completed
-                  h3.done-goal #{data.goals[i].value}
+                  h3.done-goal
+                    span= data.goals[i].value
+                    span.left-margined
+                      button.goalRemove(class="btn btn-danger")
+                        span(class="glyphicon glyphicon-remove")
                   h6.small Done!
                 else
                   h3
@@ -39,5 +43,6 @@ block content
 
                       button.goalRemove(class="btn btn-danger")
                         span(class="glyphicon glyphicon-remove")
+                  h6.small Keep on going!
   else
     h1.text-center You must log in to manage using Gualy.
