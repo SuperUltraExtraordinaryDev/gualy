@@ -18,8 +18,28 @@ var renderer = require('../renderer.js'),
 function get(req, res) {
     if (req.query.user.length == 0)
         renderer.renderAndSend('search.jade', req, res, { hasQuery: false });
-    else
-        renderer.renderAndSend('search.jade', req, res, { hasQuery: true });
+    else {
+        schema.get.User.find({
+            username: new RegExp(req.query.user)
+        }).find(function (err, users) {
+            if (err || users.length == 0) {
+                var json = {
+                    hasQuery: true,
+                    hasUsers: false,
+                };
+
+                renderer.renderAndSend('search.jade', req, res, json);
+            } else {
+                var json = {
+                    hasQuery: true,
+                    hasUsers: true,
+                    users   : users
+                };
+
+                renderer.renderAndSend('search.jade', req, res, json);
+            }
+        });
+    }
 }
 
 /////////////

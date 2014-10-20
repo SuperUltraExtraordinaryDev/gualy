@@ -1,14 +1,26 @@
 extends ./wrapper.jade
 
+block search-block
+  .row
+    h1.text-center Search For a User
+    div(class="col-md-6 col-md-offset-3")
+      form(action="/search/" method="GET" role="search")
+        .form-group
+          input(class="form-control" type="text" name="user" placeholder="Search for users.")
+        .form-group
+          button(class="btn btn-default" type="submit") Search
+
 block content
+  block search-block
+
   if data.hasQuery
-    h1.text-center Not yet implemented.
-  else
-    .row
-      h1.text-center Search for a user.
-      div(class="col-md-6 col-md-offset-3")
-        form(action="/search/" method="GET" role="search")
-          .form-group
-            input(class="form-control" type="text" name="user" placeholder="Search for users.")
-          .form-group
-            button(class="btn btn-default" type="submit") Search
+    hr
+    if data.hasUsers
+      h1.text-center Users Found
+      ul
+        - for (var i = 0; i < data.users.length; i++)
+          li
+            h3
+              a(href="/user/#{data.users[i].username}") #{data.users[i].username}
+    else
+      h1.text-center No Users With a Similar Username
