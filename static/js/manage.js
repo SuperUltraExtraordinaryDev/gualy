@@ -47,17 +47,37 @@ $(document).ready(function () {
             data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
         }).done (function (data) {
             if (data.success) {
-                successMessage(data.message);
+                successMessage(data.message + ' Refreshing in a sec!');
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1000);
             } else
                 dangerMessage(data.message);
         });
     });
 
     $('.goalEdit').click(function () {
-        alert('Goal edited! ' + $(this).closest('li').attr('data-gid'));
+        //$.ajax({
+
+        //}).done(function (data) {
+
+        //});
     });
 
     $('.goalRemove').click(function () {
-        alert('Goal removed! ' + $(this).closest('li').attr('data-gid'));
+        $.ajax({
+            url: '/api/push/goal/remove/',
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
+        }).done (function (data) {
+            if (data.success) {
+                successMessage(data.message + ' Refreshing in a sec!');
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1000);
+            } else
+                dangerMessage(data.message);
+        });
     });
 });
