@@ -1,7 +1,7 @@
 // Name        : manage.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/16/2014
-// Date Changed: 10/16/2014
+// Date Changed: 10/20/2014
 //
 // Description:
 //   Some front-end stuff for the manage page.
@@ -40,7 +40,17 @@ $(document).ready(function () {
     });
 
     $('.goalDone').click(function () {
-        alert('Goal doned! ' + $(this).closest('li').attr('data-gid'));
+        $.ajax({
+            url: '/api/push/goal/finish/',
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
+        }).done (function (data) {
+            if (data.success) {
+                successMessage(data.message);
+            } else
+                dangerMessage(data.message);
+        });
     });
 
     $('.goalEdit').click(function () {

@@ -24,17 +24,20 @@ block content
           ul
             - for (var i = 0; i < data.goals.length; i++)
               li(data-gid="#{data.goals[i]._id}")
-                h3
-                  span= data.goals[i].value
-                  
-                  span.left-margined
-                    button.goalDone(class="btn btn-success")
-                      span(class="glyphicon glyphicon-ok")
+                if data.goals[i].completed
+                  h3.done-goal #{data.goals[i].value}
+                  h6.small Done!
+                else
+                  h3
+                    span= data.goals[i].value
+                    span.left-margined
+                      button.goalDone(class="btn btn-success")
+                        span(class="glyphicon glyphicon-ok")
 
-                    button.goalEdit(class="btn btn-info")
-                      span(class="glyphicon glyphicon-pencil")
+                      button.goalEdit(class="btn btn-info")
+                        span(class="glyphicon glyphicon-pencil")
 
-                    button.goalRemove(class="btn btn-danger")
-                      span(class="glyphicon glyphicon-remove")
+                      button.goalRemove(class="btn btn-danger")
+                        span(class="glyphicon glyphicon-remove")
   else
-    h1.text-center You must log in to manage use Gualy.
+    h1.text-center You must log in to manage using Gualy.
