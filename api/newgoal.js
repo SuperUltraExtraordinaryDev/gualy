@@ -17,7 +17,7 @@ var renderer = require ('../renderer.js'),
 
 // Adding a new goal to a user's list.
 function post(req, res) {
-    if (common.hasAll(req.body, ['goal', 'userId'])) {
+    if (common.hasAll(req.body, ['goal', 'userId', 'isPublic'])) {
         schema.get.User.findOne({
             _id: req.body.userId
         }).exec(function (err, user) {
@@ -48,7 +48,7 @@ function post(req, res) {
                     var goal = new schema.get.Goal({
                         value        : req.body.goal,
                         userId       : req.body.userId,
-                        isPublic     : true,
+                        isPublic     : req.body.isPublic,
                         subId        : id,
                         made         : Date.now(),
                         completed    : false,

@@ -15,6 +15,10 @@ function pushGoal() {
     json.userId = $.cookie('logged');
     json.userId = json.userId.slice(3, json.userId.length - 1);
 
+    if (json.isPublic === undefined)
+        json.isPublic = 'off';
+    console.log(json.isPublic);
+
     $.ajax({
         url: '/api/push/goal',
         type: 'POST',

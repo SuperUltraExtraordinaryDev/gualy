@@ -17,6 +17,10 @@ block content
           .form-group
             label(for="goalTitleInput") Your New Goal:
             input(id="goalTitleInput" class="form-control" type="text" name="goal" placeholder="Enter your new goal!" required)
+          .checkbox
+            label
+              input(type="checkbox" name="isPublic")
+              span Public?
           .form-group
             button(class="btn btn-default" type="submit") Submit
       .col-md-9

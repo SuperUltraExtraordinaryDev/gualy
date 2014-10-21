@@ -1,3 +1,9 @@
+mixin publicity(truthy)
+  if truthy
+    h6.small Public!
+  else
+    h6.small Private!
+
 mixin goalBlock(goal)
   li(data-gid="#{goal._id}")
     if goal.completed
@@ -25,4 +31,9 @@ mixin goalBlock(goal)
 
           button.goal-remove(class="btn btn-danger")
             span(class="glyphicon glyphicon-remove")
-      h6.small Keep on going!
+      h6.small
+        span Keep on going! - 
+        if goal.isPublic
+          span Public!
+        else
+          span Private!
