@@ -6,7 +6,7 @@ block css-extra
 block content
   if data.userSuccess
     if data.goalsSuccess
-      h1 #{data.user}'s (Public) Goals
+      h1 #{data.name}'s (Public) Goals
       ul
         - for (var i = 0; i < data.goals.length; i++)
           li

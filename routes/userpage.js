@@ -31,6 +31,8 @@ function get(req, res) {
             schema.get.Goal.find({
                 userId  : user._id,
                 isPublic: true
+            }).sort({
+                subId: 'descending'
             }).exec(function (err, goals) {
                 if (err || goals.length == 0)
                     externData.goalsSuccess = false;
