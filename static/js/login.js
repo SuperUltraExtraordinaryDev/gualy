@@ -1,7 +1,7 @@
 // Name        : login.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/15/2014
-// Date Changed: 10/16/2014
+// Date Changed: 10/21/2014
 //
 // Description:
 //   The front-end scripts for the login page.
@@ -22,15 +22,12 @@ function postLogin() {
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(joinJSON($('#loginForm').serializeArray()))
     }).done(function (data) {
-        data.message = data.message + ' Redirecting in 3 seconds...';
-        writeMessage(data);
-
-        if (data.success) {
-            setTimeout(function () {
-                window.location.href = '/';
-            }, 3000);
-        }
+        if (data.success)
+            window.location.href = '/';
+        else
+            dangerMessage(data.message);
     });
+    return false;
 }
 
 // The post to perform on register.
@@ -47,11 +44,7 @@ function postRegister() {
 $(document).ready(function () {
     $('#messageArea').hide();
 
-    $('#loginForm').submit(function () {
-        postLogin();
-        return false;
-    });
-
+    $('#loginForm').submit(postLogin);
     $('#registerForm').submit(function () {
         postRegister();
         return false;
