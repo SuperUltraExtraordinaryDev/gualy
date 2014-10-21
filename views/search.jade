@@ -20,10 +20,12 @@ block content
     hr
     if data.hasUsers
       h1.text-center Users Found
-      ul
-        - for (var i = 0; i < data.users.length; i++)
-          li
-            h3
-              a(href="/user/#{data.users[i].username}") #{data.users[i].username}
+      .row
+        div(class="col-md-6 col-md-offset-3")
+          ul
+            - for (var i = 0; i < data.users.length; i++)
+              li
+                h3
+                  a(href="/user/#{data.users[i].username}") #{data.users[i].username}
     else
       h1.text-center No Users With a Similar Username
