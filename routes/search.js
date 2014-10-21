@@ -25,13 +25,15 @@ function get(req, res) {
             if (err || users.length == 0) {
                 var json = {
                     hasQuery: true,
-                    hasUsers: false,
+                    query   : req.query.user,
+                    hasUsers: false
                 };
 
                 renderer.renderAndSend('search.jade', req, res, json);
             } else {
                 var json = {
                     hasQuery: true,
+                    query   : req.query.user,
                     hasUsers: true,
                     users   : users
                 };
