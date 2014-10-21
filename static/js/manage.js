@@ -30,84 +30,84 @@ function pushGoal() {
         else
             dangerMessage(data.message);
     });
+    return false;
+}
+
+// The function to run upon a goal-editor being ran.
+function pushEditGoal() {
+    var json = joinJSON($(this).serializeArray());
+    json.gid = $(this).closest('li').attr('data-gid');
+
+    $.ajax({
+        url: '/api/push/goal/edit/',
+        type: 'POST',
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(json)
+    }).done(function (data) {
+        if (data.success) {
+            successMessage(data.message);
+
+            var li = $(this).closest('li');
+            li.find('.goal-value').html(li.find('.form-control').val());
+            li.find('.goal-container').show();
+            $(this).hide();
+        } else
+            dangerMessage(data.message);
+    }.bind(this));
+    return false;
+}
+
+// The function to run when a goalDone is pressed.
+function goalDone() {
+    $.ajax({
+        url: '/api/push/goal/finish/',
+        type: 'POST',
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
+    }).done (function (data) {
+        if (data.success) {
+            successMessage(data.message + ' Refreshing in a sec!');
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000);
+        } else
+            dangerMessage(data.message);
+    });
+}
+
+// The function to run when a goalEdit is pressed.
+function goalEdit() {
+    var li = $(this).closest('li');
+    var editor = li.find('.goal-editor');
+
+    editor.find('.form-control').val(li.find('.goal-value').html());
+    editor.show();
+    li.find('.goal-container').hide();
+}
+
+// The function to run when a goalRemove is passed.
+function goalRemove() {
+    $.ajax({
+        url: '/api/push/goal/remove/',
+        type: 'POST',
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
+    }).done (function (data) {
+        if (data.success) {
+            $(this).closest('li').fadeOut(200);
+            successMessage(data.message);
+        } else
+            dangerMessage(data.message);
+    }.bind(this));
 }
 
 // Page initialization code.
 $(document).ready(function () {
     $('.goal-editor').hide();
 
-    $('#goalForm').submit(function () {
-        pushGoal();
-        return false;
-    });
-
-    $('.goal-editor').submit(function () {
-        var selfRef = $(this);
-
-        var json = joinJSON(selfRef.serializeArray());
-        json.gid = selfRef.closest('li').attr('data-gid');
-
-        $.ajax({
-            url: '/api/push/goal/edit/',
-            type: 'POST',
-            contentType: 'application/json;charset=UTF-8',
-            data: JSON.stringify(json)
-        }).done(function (data) {
-            if (data.success)
-                successMessage(data.message);
-            else
-                dangerMessage(data.message);
-        });
-
-        var li = $(this).closest('li');
-
-        $(this).hide();
-        li.find('.goal-value').html(li.find('.form-control').val());
-        li.find('.goal-container').show();
-
-        return false;
-    });
-
-    $('.goalDone').click(function () {
-        $.ajax({
-            url: '/api/push/goal/finish/',
-            type: 'POST',
-            contentType: 'application/json;charset=UTF-8',
-            data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
-        }).done (function (data) {
-            if (data.success) {
-                successMessage(data.message + ' Refreshing in a sec!');
-                setTimeout(function () {
-                    window.location.reload();
-                }, 1000);
-            } else
-                dangerMessage(data.message);
-        });
-    });
-
-    $('.goalEdit').click(function () {
-        var li = $(this).closest('li');
-        var editor = li.find('.goal-editor');
-
-        editor.find('.form-control').val(li.find('.goal-value').html());
-        editor.show();
-        li.find('.goal-container').hide();
-    });
-
-    $('.goalRemove').click(function () {
-        var selfRef = $(this);
-        
-        $.ajax({
-            url: '/api/push/goal/remove/',
-            type: 'POST',
-            contentType: 'application/json;charset=UTF-8',
-            data: JSON.stringify({ gid: selfRef.closest('li').attr('data-gid') })
-        }).done (function (data) {
-            if (data.success) {
-                selfRef.closest('li').fadeOut(200);
-                successMessage(data.message);
-            } else
-                dangerMessage(data.message);
-        });
-    });
+    $('#goalForm').submit(pushGoal);
+    $('.goal-editor').submit(pushEditGoal);
+    $('.goal-done').click(goalDone);
+    $('.goal-edit').click(goalEdit);
+    $('.goal-remove').click(goalRemove);
 });

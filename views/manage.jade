@@ -28,7 +28,7 @@ block content
                   h3.done-goal
                     span= data.goals[i].value
                     span.left-margined
-                      button.goalRemove(class="btn btn-danger")
+                      button.goal-remove(class="btn btn-danger")
                         span(class="glyphicon glyphicon-remove")
                   h6.small Done!
                 else
@@ -41,13 +41,13 @@ block content
                   h3.goal-container
                     span.goal-value= data.goals[i].value
                     span.left-margined
-                      button.goalDone(class="btn btn-success")
+                      button.goal-done(class="btn btn-success")
                         span(class="glyphicon glyphicon-ok")
 
-                      button.goalEdit(class="btn btn-info")
+                      button.goal-edit(class="btn btn-info")
                         span(class="glyphicon glyphicon-pencil")
 
-                      button.goalRemove(class="btn btn-danger")
+                      button.goal-remove(class="btn btn-danger")
                         span(class="glyphicon glyphicon-remove")
                   h6.small Keep on going!
   else
