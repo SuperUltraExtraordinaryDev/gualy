@@ -1,7 +1,7 @@
 // Name        : messagecontrol.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/16/2014
-// Date Changed: 10/16/2014
+// Date Changed: 10/21/2014
 //
 // Description:
 //   A module aimed to provide helper functions for manipulating the
@@ -31,12 +31,12 @@ function setAlert(type) {
 
 // Fading the area in.
 function showArea() {
-    area().fadeIn(200);
+    area().fadeIn(100);
 }
 
 // Fading the area out.
 function hideArea() {
-    area().fadeOut(200);
+    area().fadeOut(100);
 }
 
 // Making the area disappear.
@@ -73,3 +73,8 @@ function dangerMessage(message) {
     setAlert('danger');
     setMessage(message);
 }
+
+// Hiding the area on startup.
+$(document).ready(function () {
+    area().hide();
+});
