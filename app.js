@@ -15,6 +15,7 @@ var express      = require('express'),
     fs           = require('fs'),
 
     middlewares = require('./middlewares.js'),
+    config      = require('./config.js'),
     routes      = require('./routes.js'),
     api         = require('./api.js');
 
@@ -22,12 +23,8 @@ var express      = require('express'),
 // Code //
 var app = express();
 
-// Setting up the Mongoose connection.
-fs.readFile('connection.txt', 'utf8', function (err, data) {
-    if (err)
-        return console.log(err);
-    mongoose.connect(data.trim());
-});
+// Connecting to the Mongo database.
+mongoose.connect(config.getMongoURI());
 
 // Setting up Jade for the rendering engine.
 app.engine('.jade', require('jade').renderFile);
@@ -38,5 +35,5 @@ app.use('/api/', api);
 app.use(routes);
 
 // Starting the server.
-app.listen(3000);
-console.log('Started server on 0.0.0.0:3000');
+app.listen(config.getPort());
+console.log('Started server on 0.0.0.0:' + config.getPort());
