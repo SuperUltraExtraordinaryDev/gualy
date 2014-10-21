@@ -31,7 +31,7 @@ function post(req, res) {
                         success: false,
                         message: 'There was a problem getting your goal.'
                     });
-                } else if (goal.completed == true) {
+                } else if (goal.completed) {
                     res.json({
                         success: false,
                         message: 'You can\'t complete an already-done goal!'

@@ -8,7 +8,7 @@
 
 /////////////
 // Imports //
-var renderer = require('../renderer.js')
+var renderer = require('../renderer.js'),
     schema   = require('../schema.js');
 
 //////////
@@ -34,7 +34,7 @@ function get(req, res) {
             }).sort({
                 subId: 'descending'
             }).exec(function (err, goals) {
-                if (err || goals.length == 0)
+                if (err || goals.length === 0)
                     externData.goalsSuccess = false;
                  else {
                     externData.goalsSuccess = true;

@@ -8,7 +8,8 @@
 
 /////////////
 // Imports //
-var common = require('./common.js');
+var schema = require('../schema.js'),
+    common = require('./common.js')
 
 //////////
 // Code //

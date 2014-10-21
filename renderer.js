@@ -24,7 +24,7 @@ function render(path, req, res, externData, callback) {
     data.data = externData;
 
     // Injecting the 'is logged in' value.
-    data.logged = req.cookies.logged != undefined;
+    data.logged = req.cookies.logged !== undefined;
 
     // Either injecting the name through DB callback (if the user is logged in)
     // or avoiding that whole ordeal (when the user isn't logged in).
@@ -32,7 +32,7 @@ function render(path, req, res, externData, callback) {
         schema.get.User.findOne({
             _id: req.cookies.logged
         }, function (err, user) {
-            if (err || user == null) {
+            if (err || user === null) {
                 data.logged = false;
                 data.name = '';
                 console.log('Tried to log into non-existant user.');

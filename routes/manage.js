@@ -16,14 +16,14 @@ var renderer = require('../renderer.js'),
 
 // Serving the manage page.
 function get(req, res) {
-    if (req.cookies.logged != null) {
+    if (req.cookies.logged !== null) {
         schema.get.Goal.find({
             userId: req.cookies.logged
         }).sort({
             subId: 'descending'
         }).exec(function (err, goals) {
            if (err)
-               throw err
+               throw err;
            renderer.renderAndSend('manage.jade', req, res, { goals: goals });
         });
     } else {

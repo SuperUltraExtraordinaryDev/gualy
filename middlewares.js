@@ -14,7 +14,7 @@ var express      = require('express'),
     cookieParser = require('cookie-parser'),
 
     recovery     = require('./middlewares/recovery.js'),
-    logger       = require('./middlewares/logger.js')
+    logger       = require('./middlewares/logger.js'),
     favicon      = require('./middlewares/favicon.js');
 
 //////////

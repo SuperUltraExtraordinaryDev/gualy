@@ -15,7 +15,7 @@ var common = require('./common.js');
 
 // Registering the user with the application.
 function post(req, res) {
-    if (req.cookies.logged != undefined) {
+    if (req.cookies.logged !== undefined) {
         res.json({
             success: false,
             message: 'You are already logged in.'
@@ -32,7 +32,7 @@ function post(req, res) {
                 schema.get.User.findOne({
                     username: req.body.username
                 }, function (err, user) {
-                    if (user == null) {
+                    if (user === null) {
                         new schema.get.User({
                             username: req.body.username,
                             password: common.hashString(req.body.password)

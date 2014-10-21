@@ -19,7 +19,7 @@ var lastAlert = null;
 
 // Setting a new alert class to the area.
 function setAlert(type) {
-    if (lastAlert == null) {
+    if (lastAlert === null) {
         area().addClass('alert-' + type);
         lastAlert = type;
         return;

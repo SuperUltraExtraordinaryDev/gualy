@@ -27,7 +27,7 @@ function postLogin() {
 
         if (data.success) {
             setTimeout(function () {
-                window.location.href = '/'
+                window.location.href = '/';
             }, 3000);
         }
     });

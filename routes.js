@@ -8,7 +8,7 @@
 
 /////////////
 // Imports //
-var express  = require('express')
+var express  = require('express'),
     home     = require('./routes/home.js'),
     login    = require('./routes/login.js'),
     logout   = require('./routes/logout.js'),

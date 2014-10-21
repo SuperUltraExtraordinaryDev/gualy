@@ -8,7 +8,8 @@
 
 /////////////
 // Imports //
-var common = require('./common.js');
+var schema = require('../schema.js'),
+    common = require('./common.js');
 
 //////////
 // Code //
@@ -19,7 +20,7 @@ function post(req, res) {
         schema.get.User.findOne({
             _id: req.body.userId
         }).exec(function (err, user) {
-            if (err || user == null) {
+            if (err || user === null) {
                 res.json({
                     success: false,
                     message: 'Could not find user.'
@@ -37,7 +38,7 @@ function post(req, res) {
                             success: false,
                             message: 'Could not find user goals.'
                         });
-                    } else if (goals.length == 0) {
+                    } else if (goals.length === 0) {
                         id = 0;
                     } else {
                         id = goals[0].subId + 1;
@@ -73,7 +74,7 @@ function post(req, res) {
             message: 'It looks like you forgot a field!'
         });
     }
-};
+}
 
 /////////////
 // Exports //
