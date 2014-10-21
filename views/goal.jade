@@ -1,0 +1,28 @@
+mixin goalBlock(goal)
+  li(data-gid="#{goal._id}")
+    if goal.completed
+      h3.done-goal
+        span= goal.value
+        span.left-margined
+          button.goal-remove(class="btn btn-danger")
+            span(class="glyphicon glyphicon-remove")
+      h6.small Done!
+    else
+      form(class="form-inline goal-editor" role="form")
+        .form-group
+          input(class="form-control" type="text" name="newtext" placeholder="Edit your goal!" required)
+        .form-group
+          button(class="btn btn-default" type="submit")
+            span(class="glyphicon glyphicon-ok")
+      h3.goal-container
+        span.goal-value= goal.value
+        span.left-margined
+          button.goal-done(class="btn btn-success")
+            span(class="glyphicon glyphicon-ok")
+
+          button.goal-edit(class="btn btn-info")
+            span(class="glyphicon glyphicon-pencil")
+
+          button.goal-remove(class="btn btn-danger")
+            span(class="glyphicon glyphicon-remove")
+      h6.small Keep on going!

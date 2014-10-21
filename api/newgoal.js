@@ -1,14 +1,15 @@
 // Name        : newgoal.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/19/2014
-// Date Changed: 10/19/2014
+// Date Changed: 10/21/2014
 //
 // Description:
 //   This API endpoint deals with the creation of new goals for a user.
 
 /////////////
 // Imports //
-var schema = require('../schema.js'),
+var renderer = require ('../renderer.js'),
+    schema = require('../schema.js'),
     common = require('./common.js');
 
 //////////
@@ -44,7 +45,7 @@ function post(req, res) {
                         id = goals[0].subId + 1;
                     }
 
-                    new schema.get.Goal({
+                    var goal = new schema.get.Goal({
                         value        : req.body.goal,
                         userId       : req.body.userId,
                         isPublic     : true,
@@ -52,16 +53,31 @@ function post(req, res) {
                         made         : Date.now(),
                         completed    : false,
                         dateCompleted: Date.now()
-                    }).save(function (err) {
+                    });
+                    
+                    goal.save(function (err) {
                         if (err) {
                             res.json({
                                 success: false,
                                 message: 'Could not insert goal.'
                             });
                         } else {
-                            res.json({
-                                success: true,
-                                message: 'New goal saved!'
+                            renderer.render('render-goal.jade', req, res, { goal: goal }, function (err, html) {
+                                if (err) {
+                                    console.log(err);
+                                    res.json({
+                                        success: true,
+                                        message: 'New goal saved! But we couldn\'t not render your new goal!'
+                                    });
+                                } else {
+                                    console.log(goal);
+                                    res.json({
+                                        success: true,
+                                        message: 'New goal saved!',
+                                        block  : html,
+                                        gid    : goal._id
+                                    });
+                                }
                             });
                         }
                     });

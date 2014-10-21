@@ -22,10 +22,18 @@ function pushGoal() {
         data: JSON.stringify(json)
     }).done(function (data) {
         if (data.success)  {
-            successMessage(data.message + ' Refreshing in a sec!');
-            setTimeout(function () {
-                window.location.reload();
-            }, 1000);
+            successMessage(data.message);
+
+            var gl = $('#goalList');
+            gl.prepend(data.block);
+
+            var li = gl.find('[data-gid="' + data.gid + '"]');
+            li.find('.goal-editor').hide();
+
+            li.find('.goal-editor').submit(pushEditGoal);
+            li.find('.goal-done').click(goalDone);
+            li.find('.goal-edit').click(goalEdit);
+            li.find('.goal-remove').click(goalRemove);
         }
         else
             dangerMessage(data.message);
@@ -103,6 +111,7 @@ function goalRemove() {
 
 // Page initialization code.
 $(document).ready(function () {
+    console.log($('.goal-editor'));
     $('.goal-editor').hide();
 
     $('#goalForm').submit(pushGoal);
