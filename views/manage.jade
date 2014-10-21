@@ -10,6 +10,7 @@ block css-extra
 
 block content
   if logged
+    h1.text-center Manage your goals!
     .row
       .col-md-3
         form(id="goalForm" role="form")
@@ -20,10 +21,9 @@ block content
             button(class="btn btn-default" type="submit") Submit
       .col-md-9
         if data.goals.length == 0
-          h1.text-center You do not have any goals yet.
-        else
-          ul#goalList
-            - for (var i = 0; i < data.goals.length; i++)
-              +goalBlock(data.goals[i])
+          h3#noGoals(class="text-center") You do not have any goals yet.
+        ul#goalList
+          - for (var i = 0; i < data.goals.length; i++)
+            +goalBlock(data.goals[i])
   else
     h1.text-center You must log in to manage using Gualy.

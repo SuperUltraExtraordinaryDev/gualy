@@ -22,8 +22,8 @@ function pushGoal() {
         data: JSON.stringify(json)
     }).done(function (data) {
         if (data.success)  {
-            successMessage(data.message);
-
+            $('#noGoals').hide();
+            $('#goalTitleInput').val('');
             var gl = $('#goalList');
             gl.prepend(data.block);
 
@@ -53,8 +53,6 @@ function pushEditGoal() {
         data: JSON.stringify(json)
     }).done(function (data) {
         if (data.success) {
-            successMessage(data.message);
-
             var li = $(this).closest('li');
             li.find('.goal-value').html(li.find('.form-control').val());
             li.find('.goal-container').show();
@@ -103,7 +101,6 @@ function goalRemove() {
     }).done (function (data) {
         if (data.success) {
             $(this).closest('li').fadeOut(200);
-            successMessage(data.message);
         } else
             dangerMessage(data.message);
     }.bind(this));
