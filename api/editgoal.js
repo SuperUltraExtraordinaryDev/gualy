@@ -36,7 +36,7 @@ function post(req, res) {
                         message: 'You can\'t edit a goal you\'ve already finished!'
                     });
                 } else if (req.cookies.logged == goal.userId) {
-                    goal.value = req.body.newText;
+                    goal.value = req.body.newtext;
 
                     goal.save(function (err) {
                         if (err) {
@@ -57,6 +57,11 @@ function post(req, res) {
                         message: 'You can\'t edit another person\'s goal!'
                     });
                 }
+            });
+        } else {
+            res.json({
+                success: false,
+                message: 'Missing some data!'
             });
         }
     }

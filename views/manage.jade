@@ -32,8 +32,14 @@ block content
                         span(class="glyphicon glyphicon-remove")
                   h6.small Done!
                 else
-                  h3
-                    span= data.goals[i].value
+                  form(class="form-inline goal-editor" role="form")
+                    .form-group
+                      input(class="form-control" type="text" name="newtext" placeholder="Edit your goal!" required)
+                    .form-group
+                      button(class="btn btn-default" type="submit")
+                        span(class="glyphicon glyphicon-ok")
+                  h3.goal-container
+                    span.goal-value= data.goals[i].value
                     span.left-margined
                       button.goalDone(class="btn btn-success")
                         span(class="glyphicon glyphicon-ok")
