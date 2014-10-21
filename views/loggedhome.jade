@@ -1,0 +1,28 @@
+extends ./wrapper.jade
+
+block content
+  div(class="big-text text-center") Welcome to Gualy
+
+  .row
+    div(class="col-md-6 col-md-offset-3")
+      h3.text-justify Here's a little rundown of how it all works:
+      h4
+        ul
+          li You can access everything on the site from the bar at the top.
+          li.
+            To manage your own goals, click on
+            <a href="/manage/">Manage Your Goals</a>
+            on the top right.
+          li.
+            If you want to see how other people see your profile, check out the
+            <a href="/user/#{username}">My Profile</a>
+            page (also on the top right).
+          li.
+            If you want to search for other users, just type part of their name
+            in the search bar at the top. Searches - like usernames - are case
+            sensitive!
+          li.
+            And finally, if you want to come back to this page: just click on
+            the big friendly
+            <a href="/">Gualy</a>
+            on the top left.
