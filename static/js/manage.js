@@ -104,7 +104,8 @@ function goalRemove() {
         data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
     }).done (function (data) {
         if (data.success) {
-            $(this).closest('li').fadeOut(200);
+            var li = $(this).closest('li');
+            $(li).fadeOut(200, function() { $(li).remove(); } );
         } else
             dangerMessage(data.message);
     }.bind(this));
