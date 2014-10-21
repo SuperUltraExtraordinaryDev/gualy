@@ -64,13 +64,11 @@ function post(req, res) {
                         } else {
                             renderer.render('render-goal.jade', req, res, { goal: goal }, function (err, html) {
                                 if (err) {
-                                    console.log(err);
                                     res.json({
                                         success: true,
                                         message: 'New goal saved! But we couldn\'t not render your new goal!'
                                     });
                                 } else {
-                                    console.log(goal);
                                     res.json({
                                         success: true,
                                         message: 'New goal saved!',
