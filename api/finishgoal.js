@@ -1,14 +1,15 @@
 // Name        : finishgoal.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/20/2014
-// Date Changed: 10/20/2014
+// Date Changed: 10/21/2014
 //
 // Description:
 //   This module provides the API endpoint to mark a goal as finished.
 
 /////////////
 // Imports //
-var schema = require('../schema.js'),
+var renderer = require('../renderer.js'),
+    schema = require('../schema.js'),
     common = require('./common.js');
 
 //////////
@@ -48,9 +49,21 @@ function post(req, res) {
                                     message: 'There was a problem in finishing your goal!'
                                 });
                             } else {
-                                res.json({
-                                    success: true,
-                                    message: 'Your goal is now finished!'
+                                renderer.render('render-goal.jade', req, res, { goal: goal }, function (err, html) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.json({
+                                            success: false,
+                                            message: 'Could not render the new goal.'
+                                        });
+                                    } else {
+                                        res.json({
+                                            success: true,
+                                            message: 'Your goal is now finished!',
+                                            block  : html,
+                                            gid    : goal._id
+                                        });
+                                    }
                                 });
                             }
                         });

@@ -76,10 +76,8 @@ function goalDone() {
         data: JSON.stringify({ gid: $(this).closest('li').attr('data-gid') })
     }).done (function (data) {
         if (data.success) {
-            successMessage(data.message + ' Refreshing in a sec!');
-            setTimeout(function () {
-                window.location.reload();
-            }, 1000);
+            $('#goalList').find('[data-gid="' + data.gid + '"]').replaceWith(data.block);
+            $('#goalList').find('[data-gid="' + data.gid + '"]').find('.goal-remove').click(goalRemove);
         } else
             dangerMessage(data.message);
     });
