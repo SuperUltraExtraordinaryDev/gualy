@@ -1,7 +1,7 @@
 // Name        : schema.js
 // Author(s)   : Cerek Hillen
 // Date Created: 10/15/2014
-// Date Changed: 10/16/2014
+// Date Changed: 10/22/2014
 //
 // Description:
 //   This module provides the database connection and schema for the rest of the
@@ -29,6 +29,11 @@ var schema = {
         made         : Date,
         completed    : Boolean,
         dateCompleted: Date
+    }),
+
+    Quote: mongoose.model('Quote', {
+        quote : String,
+        author: String
     })
 };
 

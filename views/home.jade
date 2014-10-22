@@ -21,11 +21,12 @@ block content
           li Lets you keep EVERYTHING private.
 
     .col-md-6
-      .med-text Some of our admiring fans:
-      ul
-        li.quote-block
-          .quote "I use and love Gualy. I also made it, so that's not saying much."
-          .quote-author -Cerek Hillen
-        li.quote-block
-          .quote "It's pretty okay, I guess."
-          .quote-author -Also me, depending on my mood.
+      if data.quotes.length > 0
+        .med-text Some of our admiring fans:
+        ul
+          - for (var i = 0; i < data.quotes.length; i++)
+            li.quote-block
+              .quote "#{data.quotes[i].quote}"
+              .quote-author -#{data.quotes[i].author}
+      else
+        .med-text We don't have any admiring fans... Yet!
