@@ -9,6 +9,8 @@
 /////////////
 // Imports //
 var gulp    = require('gulp'),
+    watch   = require('gulp-watch'),
+    react   = require('gulp-react'),
     nodemon = require('nodemon');
 
 //////////
@@ -31,6 +33,11 @@ gulp.task('watchNode', function () {
     }).on('crash', function () {
         console.log('Node server crashed - will restart upon next save.');
     });
+});
+
+// Watching all of the JSX files.
+gulp.task('watchJSX', function () {
+    gulp.src('')
 });
 
 // Watching a bunch of different source files for changes.
