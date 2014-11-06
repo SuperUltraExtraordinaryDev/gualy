@@ -1,2 +1,11 @@
 # Ignoring installed node modules.
 node_modules/
+
+# Ignoring installed bower components.
+bower_components/
+
+# Ignoring gulp-deployed bower components.
+static/fonts/
+static/js/jquery.min.js
+static/js/bootstrap.min.js
+static/js/react.min.js

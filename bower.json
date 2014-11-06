@@ -1,0 +1,24 @@
+{
+  "name": "gualy",
+  "version": "0.0.0",
+  "description": "A goal-tracking app.",
+  "homepage": "https://github.com/crockeo/gualy",
+  "authors": [
+    "Cerek Hillen <cerekh@gmail.com>"
+  ],
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.0",
+    "jquery": "~2.1.1",
+    "react": "~0.12.0"
+  }
+}
