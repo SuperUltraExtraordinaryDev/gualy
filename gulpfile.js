@@ -46,7 +46,7 @@ gulp.task('deploy', function () {
         .pipe(gulp.dest('static/js/'));
 
     // Moving over jQuery
-    gulp.src('bower_components/jquery/jquery.min.js')
+    gulp.src('bower_components/jquery/dist/jquery.min.js')
         .pipe(gulp.dest('static/js/'));
 
     // Moving over react.
